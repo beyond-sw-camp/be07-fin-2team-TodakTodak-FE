@@ -9,13 +9,13 @@
             </v-row>            
             <v-row>
                 <v-col cols="12" class="text-center">
-                    <v-row class="inter-light field-label mt-2 mr-3">
+                    <v-row class="inter-light field-label mt-2 ml-6">
                         의사 이름
                     </v-row>
                     <v-row class="input-space mb-2">
                         <input v-model="doctorName" class="email-input">
                     </v-row>
-                    <v-row class="inter-light field-label">
+                    <v-row class="inter-light field-label ml-6">
                         이메일
                     </v-row>
                     <v-row class="input-space mb-2 email-container">
@@ -95,6 +95,9 @@ export default {
 
                 if (response.status === 200) {
                     alert('의사 등록 성공');
+                    this.doctorName='';
+                    this.emailPrefix='';
+                    this.emailDomain='';
                 } else {
                     alert(response.data.message);
                 }
@@ -106,7 +109,7 @@ export default {
                     this.dialog = false;  // 의사 추가 모달 닫기
                     this.$emit('child-exists', error.response.data.result.parents); 
                 } else {
-                    alert('의사 등록에 실패했습니다.');
+                    alert('이미 등록된 의사입니다.');
                 }
             }
 
